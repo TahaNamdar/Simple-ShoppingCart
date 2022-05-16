@@ -11,13 +11,17 @@ import Table from "react-bootstrap/esm/Table";
 import { DLT } from "../redux/actions/action";
 import { TextField } from "@mui/material";
 import { Button } from "@mui/material";
+import { ADDTOBALANCE, TOTAL, REDUCEBALANCE } from "../redux/actions/action";
 
 const Header = () => {
   const [price, setPrice] = useState(0);
+  const [query, setQuery] = useState("");
   // console.log(price);
 
   const getdata = useSelector((state) => state.cartreducer.carts);
-  // console.log(getdata);
+  const getdataBalance = useSelector((state) => state.balanceReducer.balance);
+  const getdataTotal = useSelector((state) => state.balanceReducer.total);
+  console.log(getdataBalance);
 
   const dispatch = useDispatch();
 
@@ -55,9 +59,30 @@ const Header = () => {
     total();
   }, [total]);
 
-  const totalResultBadge = getdata.reduce((acc, item) => {
-    return acc + item.qnty;
+  const totalResultBadge = getdata.reduce((acc, current) => {
+    return acc + current.price;
   }, 0);
+
+  //balance
+  const inputHandler = (e) => {
+    setQuery(e.target.value);
+  };
+
+  const Inventory = getdataBalance.reduce((acc, item) => {
+    return acc + Number(item);
+  }, 0);
+
+  useEffect(() => {
+    dispatch(TOTAL(Inventory));
+  }, [Inventory]);
+
+  const paymnetClick = () => {
+    dispatch(ADDTOBALANCE(query));
+  };
+
+  const withDrawClick = () => {
+    dispatch(REDUCEBALANCE(query));
+  };
 
   return (
     <>
@@ -243,15 +268,25 @@ const Header = () => {
                   variant="standard"
                   className="p-none"
                   inputProps={{ type: "number" }}
+                  onChange={inputHandler}
                 />
 
-                <Button variant="outlined" style={{ margin: 6 }}>
+                <Button
+                  variant="outlined"
+                  style={{ margin: 6 }}
+                  onClick={paymnetClick}
+                >
                   Payment
                 </Button>
-                <Button variant="outlined" style={{ margin: 6 }}>
+                <Button
+                  variant="outlined"
+                  style={{ margin: 6 }}
+                  onClick={withDrawClick}
+                >
                   WithDraw
                 </Button>
               </div>
+              <p>Inventory : {getdataTotal}</p>
             </div>
           </div>
         </Menu>
