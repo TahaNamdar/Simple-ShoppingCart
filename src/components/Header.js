@@ -69,7 +69,7 @@ const Header = () => {
   };
 
   const Inventory = getdataBalance.reduce((acc, item) => {
-    return acc + Number(item);
+    return acc + Number(item.value);
   }, 0);
 
   useEffect(() => {

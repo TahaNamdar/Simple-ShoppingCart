@@ -1,6 +1,6 @@
 const INIT_STATE = {
   balance: [],
-  total: "",
+  total: [],
 };
 
 export const balanceReducer = (state = INIT_STATE, action) => {
@@ -8,7 +8,10 @@ export const balanceReducer = (state = INIT_STATE, action) => {
     case "ADD_BALANCE":
       return {
         ...state,
-        balance: [...state.balance, action.payload],
+        balance: [
+          ...state.balance,
+          { value: action.payload, createdAt: Date.now() },
+        ],
       };
     case "TOTAL":
       return {
@@ -16,9 +19,11 @@ export const balanceReducer = (state = INIT_STATE, action) => {
         total: action.payload,
       };
     case "REDUCEBALANCE":
+      const total = Number(state.total) - action.payload;
+
       return {
         ...state,
-        total: Number(state.total) - action.payload,
+        balance: [{ value: total, createdAt: Date.now() }],
       };
 
     default:
