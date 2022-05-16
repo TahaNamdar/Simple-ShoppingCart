@@ -11,7 +11,6 @@ const Cards = () => {
 
   const dispatch = useDispatch();
   const getdata = useSelector((state) => state.cartreducer.carts);
-  console.log(getdata, "injaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
 
   const send = (e) => {
     dispatch(ADD(e));

@@ -9,6 +9,8 @@ import { NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import Table from "react-bootstrap/esm/Table";
 import { DLT } from "../redux/actions/action";
+import { TextField } from "@mui/material";
+import { Button } from "@mui/material";
 
 const Header = () => {
   const [price, setPrice] = useState(0);
@@ -21,11 +23,20 @@ const Header = () => {
 
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
+  //balance
+  const [balance, setBalance] = useState(null);
+  const openBalance = Boolean(balance);
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
   const handleClose = () => {
     setAnchorEl(null);
+  };
+  const handleClickBalance = (event) => {
+    setBalance(event.currentTarget);
+  };
+  const handleCloseBalance = () => {
+    setBalance(null);
   };
 
   const dlt = (id) => {
@@ -60,10 +71,10 @@ const Header = () => {
               Home
             </NavLink>
           </Nav>
-
           <Badge
             badgeContent={totalResultBadge}
             color="primary"
+            className="m-icon"
             id="basic-button"
             aria-controls={open ? "basic-menu" : undefined}
             aria-haspopup="true"
@@ -72,6 +83,21 @@ const Header = () => {
           >
             <i
               class="fa-solid fa-cart-shopping text-light"
+              style={{ fontSize: 25, cursor: "pointer" }}
+            ></i>
+          </Badge>
+          {/* Balance */}
+          <Badge
+            color="primary"
+            id="basic-button"
+            aria-controls={openBalance ? "basic-menu" : undefined}
+            aria-haspopup="true"
+            aria-expanded={openBalance ? "true" : undefined}
+            onClick={handleClickBalance}
+            className="m-icon"
+          >
+            <i
+              class="fa-solid fa-credit-card-alt text-light"
               style={{ fontSize: 25, cursor: "pointer" }}
             ></i>
           </Badge>
@@ -172,6 +198,62 @@ const Header = () => {
               />
             </div>
           )}
+        </Menu>
+
+        {/* Balance */}
+        <Menu
+          id="basic-menu"
+          anchorEl={balance}
+          open={openBalance}
+          onClose={handleCloseBalance}
+          MenuListProps={{
+            "aria-labelledby": "basic-button",
+          }}
+        >
+          <div
+            className="card_details d-flex justify-content-center align-items-center"
+            style={{ width: "24rem", padding: 10, position: "relative" }}
+          >
+            <i
+              className="fas fa-close smallclose"
+              onClick={handleCloseBalance}
+              style={{
+                position: "absolute",
+                top: 2,
+                right: 20,
+                fontSize: 23,
+                cursor: "pointer",
+              }}
+            ></i>
+            <div>
+              <div className="center">
+                <img
+                  src="./wallet.gif"
+                  alt=""
+                  className="emptycart_img"
+                  style={{ width: "5rem", padding: 10, borderRadius: 20 }}
+                />
+                <p style={{ fontSize: 22, alignSelf: "end" }}>Wallet</p>
+              </div>
+
+              <div className="center">
+                <TextField
+                  id="standard-basic"
+                  label="number"
+                  variant="standard"
+                  className="p-none"
+                  inputProps={{ type: "number" }}
+                />
+
+                <Button variant="outlined" style={{ margin: 6 }}>
+                  Payment
+                </Button>
+                <Button variant="outlined" style={{ margin: 6 }}>
+                  WithDraw
+                </Button>
+              </div>
+            </div>
+          </div>
         </Menu>
       </Navbar>
     </>
