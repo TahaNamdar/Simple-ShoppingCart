@@ -266,27 +266,43 @@ const Header = () => {
                   id="standard-basic"
                   label="number"
                   variant="standard"
+                  size="small"
+                  color="secondary"
                   className="p-none"
                   inputProps={{ type: "number" }}
                   onChange={inputHandler}
+                  style={{ margin: 6 }}
                 />
 
                 <Button
-                  variant="outlined"
+                  variant="contained"
+                  color="success"
                   style={{ margin: 6 }}
                   onClick={paymnetClick}
                 >
                   Payment
                 </Button>
                 <Button
-                  variant="outlined"
+                  variant="contained"
                   style={{ margin: 6 }}
                   onClick={withDrawClick}
+                  color="error"
                 >
                   WithDraw
                 </Button>
               </div>
-              <p>Inventory : {getdataTotal}</p>
+
+              <hr />
+              <div className="flexbox">
+                <Button
+                  variant="string"
+                  style={{ margin: 6, alignSelf: "center" }}
+                  onClick={withDrawClick}
+                >
+                  History
+                </Button>
+                <p>Inventory : {getdataTotal}</p>
+              </div>
             </div>
           </div>
         </Menu>

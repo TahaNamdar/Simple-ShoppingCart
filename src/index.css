@@ -24,3 +24,8 @@ code {
 .p-none {
   margin-top: -4px !important;
 }
+.flexbox {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
