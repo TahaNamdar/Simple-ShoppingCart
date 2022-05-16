@@ -60,7 +60,7 @@ const Header = () => {
   }, [total]);
 
   const totalResultBadge = getdata.reduce((acc, current) => {
-    return acc + current.price;
+    return acc + current.qnty;
   }, 0);
 
   //balance

@@ -18,7 +18,14 @@ const Cards = () => {
 
   return (
     <div className="container mt-3">
-      <h2 className="text-center">Add to Cart Projects</h2>
+      <h2 className="text-center">
+        <span
+          style={{ backgroundColor: "white", borderRadius: 10, padding: 2 }}
+        >
+          React-Redux
+        </span>{" "}
+        shopping cart Project
+      </h2>
 
       <div className="row d-flex justify-content-center align-items-center">
         {data.map((element, id) => {
@@ -39,7 +46,7 @@ const Cards = () => {
                   <Card.Text>Price : ₹ {element.price}</Card.Text>
                   <div className="button_div d-flex justify-content-center">
                     <Button
-                      variant="primary"
+                      variant="dark"
                       onClick={() => send(element)}
                       className="col-lg-12"
                     >
