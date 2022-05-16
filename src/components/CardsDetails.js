@@ -51,7 +51,7 @@ const CardsDetails = () => {
         <h2 className="text-center">Iteams Details Page</h2>
 
         <section className="container mt-3">
-          <div className="iteamsdetails">
+          <div className="iteamsdetails" style={{ backgroundColor: "white" }}>
             {data.map((ele) => {
               return (
                 <>
