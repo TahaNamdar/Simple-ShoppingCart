@@ -11,7 +11,7 @@ import Table from "react-bootstrap/esm/Table";
 import { DLT } from "../redux/actions/action";
 import { TextField } from "@mui/material";
 import { Button } from "@mui/material";
-import { ADDTOBALANCE, TOTAL, REDUCEBALANCE } from "../redux/actions/action";
+import { ADDTOBALANCE, REDUCEBALANCE } from "../redux/actions/action";
 
 const Header = () => {
   const [price, setPrice] = useState(0);
@@ -21,7 +21,6 @@ const Header = () => {
 
   const getdata = useSelector((state) => state.cartreducer.carts);
   const getdataBalance = useSelector((state) => state.balanceReducer.balance);
-  const getdataTotal = useSelector((state) => state.balanceReducer.total);
   console.log(getdataBalance);
 
   const dispatch = useDispatch();
@@ -69,14 +68,6 @@ const Header = () => {
     setQuery(e.target.value);
   };
 
-  // const Inventory = getdataBalance.reduce((acc, item) => {
-  //   return acc + Number(item.value);
-  // }, 0);
-
-  // useEffect(() => {
-  //   dispatch(TOTAL(Inventory));
-  // }, [Inventory]);
-
   const paymnetClick = () => {
     dispatch(ADDTOBALANCE(query));
   };
@@ -84,6 +75,18 @@ const Header = () => {
   const withDrawClick = () => {
     dispatch(REDUCEBALANCE(query));
   };
+
+  const payments = getdataBalance.filter((item) => item.status === "payment");
+  const withDraw = getdataBalance.filter((item) => item.status === "withDraw");
+
+  const totalPayments = payments.reduce((acc, curr) => {
+    return acc + Number(curr.value);
+  }, 0);
+  const totalWithDraw = withDraw.reduce((acc, curr) => {
+    return acc + Number(curr.value);
+  }, 0);
+
+  const result = Number(totalPayments) - Number(totalWithDraw);
 
   return (
     <>
@@ -302,7 +305,7 @@ const Header = () => {
                 >
                   History
                 </Button>
-                <p>Inventory : </p>
+                <p>Inventory : {result} </p>
               </div>
             </div>
           </div>

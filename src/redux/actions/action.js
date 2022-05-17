@@ -29,13 +29,6 @@ export const ADDTOBALANCE = (item) => {
   };
 };
 
-export const TOTAL = (item) => {
-  return {
-    type: "TOTAL",
-    payload: item,
-  };
-};
-
 export const REDUCEBALANCE = (item) => {
   return {
     type: "REDUCEBALANCE",
