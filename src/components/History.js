@@ -53,7 +53,13 @@ export default function History() {
         })}
       </div>
 
-      <p style={{ marginLeft: 52, padding: 10 }}>Total: {result}</p>
+      {result >= 0 ? (
+        <p style={{ marginLeft: 52, padding: 10 }}>Total: {result}</p>
+      ) : (
+        <p style={{ marginLeft: 52, padding: 10, color: "red" }}>
+          Inventory is not enough
+        </p>
+      )}
     </List>
   );
 }

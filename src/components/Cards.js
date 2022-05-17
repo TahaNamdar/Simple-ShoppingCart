@@ -43,7 +43,7 @@ const Cards = () => {
                 />
                 <Card.Body>
                   <Card.Title>{element.rname}</Card.Title>
-                  <Card.Text>Price : ₹ {element.price}</Card.Text>
+                  <Card.Text>Price : $ {element.price}</Card.Text>
                   <div className="button_div d-flex justify-content-center">
                     <Button
                       variant="dark"

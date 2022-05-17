@@ -316,9 +316,17 @@ const Header = () => {
                 >
                   History
                 </Button>
-                <p style={{ alignSelf: "center", marginTop: 10 }}>
-                  Inventory : {result}{" "}
-                </p>
+                {result >= 0 ? (
+                  <p style={{ alignSelf: "center", marginTop: 10 }}>
+                    Inventory : {result}
+                  </p>
+                ) : (
+                  <p
+                    style={{ alignSelf: "center", marginTop: 10, color: "red" }}
+                  >
+                    Inventory is not enough
+                  </p>
+                )}
               </div>
             </div>
           </div>
