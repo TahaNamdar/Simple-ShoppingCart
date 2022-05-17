@@ -68,6 +68,14 @@ const Header = () => {
     setQuery(e.target.value);
   };
 
+  // const Inventory = getdataBalance.reduce((acc, item) => {
+  //   return acc + Number(item.value);
+  // }, 0);
+
+  // useEffect(() => {
+  //   dispatch(TOTAL(Inventory));
+  // }, [Inventory]);
+
   const paymnetClick = () => {
     dispatch(ADDTOBALANCE(query));
   };
@@ -75,7 +83,6 @@ const Header = () => {
   const withDrawClick = () => {
     dispatch(REDUCEBALANCE(query));
   };
-
   const payments = getdataBalance.filter((item) => item.status === "payment");
   const withDraw = getdataBalance.filter((item) => item.status === "withDraw");
 
@@ -162,14 +169,19 @@ const Header = () => {
                             <NavLink to={`/cart/${e.id}`} onClick={handleClose}>
                               <img
                                 src={e.imgdata}
-                                style={{ width: "5rem", height: "5rem" }}
-                                alt=""
+                                style={{
+                                  width: "6rem",
+                                  height: "6rem",
+                                  marginTop: "3rem",
+                                  alignSelf: "center",
+                                }}
+                                alt="itemImage"
                               />
                             </NavLink>
                           </td>
-                          <td>
+                          <td style={{ padding: "2rem" }}>
                             <p>{e.rname}</p>
-                            <p>Price : ₹{e.price}</p>
+                            <p>Price : ${e.price}</p>
                             <p>Quantity : {e.qnty}</p>
                             <p
                               style={{
@@ -198,7 +210,7 @@ const Header = () => {
                       </div>
                     );
                   })}
-                  <p className="text-center">Total :₹ {price}</p>
+                  <p className="text-center">Total : $ {price}</p>
                 </tbody>
               </Table>
             </div>
@@ -277,27 +289,26 @@ const Header = () => {
                   onChange={inputHandler}
                   style={{ margin: 6 }}
                 />
-
-                <Button
-                  variant="contained"
-                  color="success"
-                  style={{ margin: 6 }}
-                  onClick={paymnetClick}
-                >
-                  Payment
-                </Button>
-                <Button
-                  variant="contained"
-                  style={{ margin: 6 }}
-                  onClick={withDrawClick}
-                  color="error"
-                >
-                  WithDraw
-                </Button>
               </div>
+              <Button
+                variant="contained"
+                color="success"
+                style={{ margin: 6 }}
+                onClick={paymnetClick}
+              >
+                Payment
+              </Button>
+              <Button
+                variant="contained"
+                style={{ margin: 6 }}
+                onClick={withDrawClick}
+                color="error"
+              >
+                WithDraw
+              </Button>
 
               <hr />
-              <div className="flexbox">
+              <div className="center">
                 <Button
                   variant="string"
                   style={{ margin: 6, alignSelf: "center" }}
@@ -305,7 +316,9 @@ const Header = () => {
                 >
                   History
                 </Button>
-                <p>Inventory : {result} </p>
+                <p style={{ alignSelf: "center", marginTop: 10 }}>
+                  Inventory : {result}{" "}
+                </p>
               </div>
             </div>
           </div>
