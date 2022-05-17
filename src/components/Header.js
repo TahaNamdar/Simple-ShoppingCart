@@ -4,7 +4,7 @@ import Container from "react-bootstrap/Container";
 import Badge from "@mui/material/Badge";
 import Nav from "react-bootstrap/Nav";
 import Menu from "@mui/material/Menu";
-import MenuItem from "@mui/material/MenuItem";
+import { useNavigate } from "react-router-dom";
 import { NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import Table from "react-bootstrap/esm/Table";
@@ -17,6 +17,7 @@ const Header = () => {
   const [price, setPrice] = useState(0);
   const [query, setQuery] = useState("");
   // console.log(price);
+  const navigate = useNavigate();
 
   const getdata = useSelector((state) => state.cartreducer.carts);
   const getdataBalance = useSelector((state) => state.balanceReducer.balance);
@@ -49,7 +50,7 @@ const Header = () => {
 
   const total = () => {
     let price = 0;
-    getdata.map((ele, k) => {
+    getdata.map((ele) => {
       price = ele.price * ele.qnty + price;
     });
     setPrice(price);
@@ -68,13 +69,13 @@ const Header = () => {
     setQuery(e.target.value);
   };
 
-  const Inventory = getdataBalance.reduce((acc, item) => {
-    return acc + Number(item.value);
-  }, 0);
+  // const Inventory = getdataBalance.reduce((acc, item) => {
+  //   return acc + Number(item.value);
+  // }, 0);
 
-  useEffect(() => {
-    dispatch(TOTAL(Inventory));
-  }, [Inventory]);
+  // useEffect(() => {
+  //   dispatch(TOTAL(Inventory));
+  // }, [Inventory]);
 
   const paymnetClick = () => {
     dispatch(ADDTOBALANCE(query));
@@ -107,7 +108,7 @@ const Header = () => {
             onClick={handleClick}
           >
             <i
-              class="fa-solid fa-cart-shopping text-light"
+              className="fa-solid fa-cart-shopping text-light"
               style={{ fontSize: 25, cursor: "pointer" }}
             ></i>
           </Badge>
@@ -122,7 +123,7 @@ const Header = () => {
             className="m-icon"
           >
             <i
-              class="fa-solid fa-credit-card-alt text-light"
+              className="fa-solid fa-credit-card-alt text-light"
               style={{ fontSize: 25, cursor: "pointer" }}
             ></i>
           </Badge>
@@ -150,9 +151,9 @@ const Header = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  {getdata.map((e) => {
+                  {getdata.map((e, i) => {
                     return (
-                      <>
+                      <div key={i}>
                         <tr>
                           <td>
                             <NavLink to={`/cart/${e.id}`} onClick={handleClose}>
@@ -191,7 +192,7 @@ const Header = () => {
                             <i className="fas fa-trash largetrash"></i>
                           </td>
                         </tr>
-                      </>
+                      </div>
                     );
                   })}
                   <p className="text-center">Total :₹ {price}</p>
@@ -297,11 +298,11 @@ const Header = () => {
                 <Button
                   variant="string"
                   style={{ margin: 6, alignSelf: "center" }}
-                  onClick={withDrawClick}
+                  onClick={() => navigate("/history")}
                 >
                   History
                 </Button>
-                <p>Inventory : {getdataTotal}</p>
+                <p>Inventory : </p>
               </div>
             </div>
           </div>

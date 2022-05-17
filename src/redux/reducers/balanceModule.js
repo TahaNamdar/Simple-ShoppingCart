@@ -10,7 +10,7 @@ export const balanceReducer = (state = INIT_STATE, action) => {
         ...state,
         balance: [
           ...state.balance,
-          { value: action.payload, createdAt: Date.now() },
+          { value: action.payload, createdAt: Date.now(), status: "payment" },
         ],
       };
     case "TOTAL":
@@ -19,11 +19,12 @@ export const balanceReducer = (state = INIT_STATE, action) => {
         total: action.payload,
       };
     case "REDUCEBALANCE":
-      const total = Number(state.total) - action.payload;
-
       return {
         ...state,
-        balance: [{ value: total, createdAt: Date.now() }],
+        balance: [
+          ...state.balance,
+          { value: action.payload, createdAt: Date.now(), status: "withDraw" },
+        ],
       };
 
     default:
