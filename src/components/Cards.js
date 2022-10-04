@@ -32,7 +32,7 @@ const Cards = () => {
           return (
             <>
               <Card
-                style={{ width: "22rem", border: "none" }}
+                style={{ width: "22rem", border: "none", marginBottom: "2rem" }}
                 className="mx-2 mt-4 card_style"
               >
                 <Card.Img

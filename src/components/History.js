@@ -25,8 +25,10 @@ export default function History() {
       sx={{
         width: "100%",
         maxWidth: 560,
+        maxHeight: 580,
         bgcolor: "background.paper",
         margin: "22px auto",
+        overflowY: "scroll",
       }}
       component="nav"
       aria-labelledby="nested-list-subheader"
@@ -46,6 +48,7 @@ export default function History() {
                 <p>
                   {moment(date.createdAt).locale("fa").format("YYYY/MM/DD")}
                 </p>
+
                 <p>{date.status}</p>
               </div>
             </div>
