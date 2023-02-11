@@ -100,16 +100,15 @@ const Header = () => {
       <Navbar bg="dark" variant="dark" style={{ height: "60px" }}>
         <Container>
           <NavLink to="/" className="text-decoration-none text-light mx-3">
-            Add to Cart
-          </NavLink>
+خوش آمدید          </NavLink>
           <Nav className="me-auto">
             <NavLink to="/" className="text-decoration-none text-light">
-              Home
+              خانه
             </NavLink>
           </Nav>
           <Badge
             badgeContent={totalResultBadge}
-            color="primary"
+            color="info"
             className="m-icon"
             id="basic-button"
             aria-controls={open ? "basic-menu" : undefined}
@@ -154,12 +153,7 @@ const Header = () => {
               style={{ width: "24rem", padding: 10 }}
             >
               <Table>
-                <thead>
-                  <tr>
-                    <th>Photo</th>
-                    <th>Restaurant Name</th>
-                  </tr>
-                </thead>
+            
                 <tbody>
                   {getdata.map((e, i) => {
                     return (
@@ -170,8 +164,8 @@ const Header = () => {
                               <img
                                 src={e.imgdata}
                                 style={{
-                                  width: "6rem",
-                                  height: "6rem",
+                                  width: "8rem",
+                                  height: "8rem",
                                   marginTop: "3rem",
                                   alignSelf: "center",
                                 }}
@@ -179,14 +173,14 @@ const Header = () => {
                               />
                             </NavLink>
                           </td>
-                          <td style={{ padding: "2rem" }}>
+                          <td style={{ padding: "1rem" }}>
                             <p>{e.rname}</p>
-                            <p>Price : ${e.price}</p>
-                            <p>Quantity : {e.qnty}</p>
+                            <p> قیمت :  {e.price} هزار تومان </p>
+                            <p>تعداد : {e.qnty} عدد</p>
                             <p
                               style={{
                                 color: "red",
-                                fontSize: 20,
+                                fontSize: 18,
                                 cursor: "pointer",
                               }}
                               onClick={() => dlt(e.id)}
@@ -199,7 +193,7 @@ const Header = () => {
                             className="mt-5"
                             style={{
                               color: "red",
-                              fontSize: 20,
+                              fontSize: 18,
                               cursor: "pointer",
                             }}
                             onClick={() => dlt(e.id)}
@@ -210,7 +204,7 @@ const Header = () => {
                       </div>
                     );
                   })}
-                  <p className="text-center">Total : $ {price}</p>
+                  <p className="text-center">مبلغ قابل پرداخت :  {price} هزار تومان</p>
                 </tbody>
               </Table>
             </div>
@@ -230,7 +224,7 @@ const Header = () => {
                   cursor: "pointer",
                 }}
               ></i>
-              <p style={{ fontSize: 22 }}>Your carts is empty</p>
+              <p style={{ fontSize: 18,fontFamily:"Vazir" }}>سبد خرید خالی می باشد</p>
               <img
                 src="./cart.gif"
                 alt=""
@@ -274,7 +268,7 @@ const Header = () => {
                   className="emptycart_img"
                   style={{ width: "5rem", padding: 10, borderRadius: 20 }}
                 />
-                <p style={{ fontSize: 22, alignSelf: "end" }}>Wallet</p>
+                <p style={{ fontSize: 18, alignSelf: "center",fontFamily:'Vazir' }}>کیف پول</p>
               </div>
 
               <div className="center">
@@ -287,45 +281,43 @@ const Header = () => {
                   className="p-none"
                   inputProps={{ type: "number" }}
                   onChange={inputHandler}
-                  style={{ margin: 6 }}
+                  style={{ margin: 10 }}
                 />
               </div>
               <Button
                 variant="contained"
                 color="success"
-                style={{ margin: 6 }}
+                style={{ margin: 6 , fontFamily:'Vazir'}}
                 onClick={paymnetClick}
               >
-                Payment
+                واریز
               </Button>
               <Button
                 variant="contained"
-                style={{ margin: 6 }}
+                style={{ margin: 6, fontFamily:'Vazir' }}
                 onClick={withDrawClick}
                 color="error"
               >
-                WithDraw
-              </Button>
+برداشت              </Button>
 
               <hr />
               <div className="center">
                 <Button
                   variant="string"
-                  style={{ margin: 6, alignSelf: "center" }}
+                  style={{ margin: 6, fontFamily:'Vazir' }}
                   onClick={() => navigate("/history")}
                 >
-                  History
+                  لیست تراکنش ها
                 </Button>
                 {result >= 0 ? (
-                  <p style={{ alignSelf: "center", marginTop: 10 }}>
-                    Inventory : {result}
+                  <p style={{ alignSelf: "center", marginTop: 10, fontFamily:'Vazir' }}>
+                    موجودی کیف شما : {result}
                   </p>
                 ) : (
                   <p
                     style={{ alignSelf: "center", marginTop: 10, color: "red" }}
                   >
-                    Inventory is not enough
-                  </p>
+موجودی کافی نیست                  </p>
                 )}
               </div>
             </div>

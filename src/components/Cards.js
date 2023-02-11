@@ -17,22 +17,16 @@ const Cards = () => {
   };
 
   return (
-    <div className="container mt-3">
-      <h2 className="text-center">
-        <span
-          style={{ backgroundColor: "white", borderRadius: 10, padding: 2 }}
-        >
-          React-Redux
-        </span>{" "}
-        shopping cart Project
-      </h2>
+    <div className="container mt-1">
+      
+        
 
       <div className="row d-flex justify-content-center align-items-center">
         {data.map((element, id) => {
           return (
             <>
               <Card
-                style={{ width: "22rem", border: "none", marginBottom: "2rem" }}
+                style={{ width: "22rem", border: "none", marginBottom: "2rem", }}
                 className="mx-2 mt-4 card_style"
               >
                 <Card.Img
@@ -43,22 +37,25 @@ const Cards = () => {
                 />
                 <Card.Body>
                   <Card.Title>{element.rname}</Card.Title>
-                  <Card.Text>Price : $ {element.price}</Card.Text>
+                  <Card.Text style={{fontFamily:'Vazir'}}>قیمت :  {element.price} هزار تومان</Card.Text>
                   <div className="button_div d-flex justify-content-center">
                     <Button
                       variant="dark"
                       onClick={() => send(element)}
                       className="col-lg-12"
+                      style={{fontFamily:'Vazir'}}
                     >
-                      Add to Cart
-                    </Button>
+افزودن به سبد خرید                    </Button>
                   </div>
                 </Card.Body>
               </Card>
+              
             </>
           );
         })}
+         
       </div>
+
     </div>
   );
 };

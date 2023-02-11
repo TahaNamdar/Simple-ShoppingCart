@@ -47,37 +47,30 @@ const CardsDetails = () => {
 
   return (
     <>
-      <div className="container mt-2">
-        <h2 className="text-center">Iteams Details Page</h2>
-
+      <div className="container mt-2" style={{fontFamily:'Vazir'}}>
+ 
         <section className="container mt-3">
           <div className="iteamsdetails" style={{ backgroundColor: "white" }}>
             {data.map((ele) => {
               return (
                 <>
                   <div className="items_img">
-                    <img src={ele.imgdata} alt="" />
+                    <img src={ele.imgdata} style={{padding:'2rem'}} alt="" />
                   </div>
 
                   <div className="details">
                     <Table>
                       <tr>
                         <td>
+                        
                           <p>
                             {" "}
-                            <strong>Restaurant</strong> : {ele.rname}
+                            <strong>قیمت</strong> : {ele.price} هزار تومان
                           </p>
+                       
                           <p>
                             {" "}
-                            <strong>Price</strong> : ₹{ele.price}
-                          </p>
-                          <p>
-                            {" "}
-                            <strong>Dishes</strong> : {ele.address}
-                          </p>
-                          <p>
-                            {" "}
-                            <strong>Total</strong> :₹ {ele.price * ele.qnty}
+                            <strong>کل</strong> : {ele.price * ele.qnty} هزار تومان
                           </p>
                           <div
                             className="mt-5 d-flex justify-content-between align-items-center"
@@ -109,7 +102,7 @@ const CardsDetails = () => {
                         </td>
                         <td>
                           <p>
-                            <strong>Rating :</strong>{" "}
+                            <strong>امتیاز :</strong>{" "}
                             <span
                               style={{
                                 background: "green",
@@ -121,12 +114,9 @@ const CardsDetails = () => {
                               {ele.rating} ★{" "}
                             </span>
                           </p>
+                          
                           <p>
-                            <strong>Order Review :</strong>{" "}
-                            <span>{ele.somedata} </span>
-                          </p>
-                          <p>
-                            <strong>Remove :</strong>{" "}
+                            <strong>حذف :</strong>{" "}
                             <span>
                               <i
                                 className="fas fa-trash"

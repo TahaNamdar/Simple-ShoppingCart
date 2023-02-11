@@ -35,7 +35,7 @@ export default function History() {
       subheader={
         <ListSubheader component="div" id="nested-list-subheader">
           <CalendarTodayIcon />
-          <span style={{ margin: 4, alignSelf: "center" }}>History</span>
+          <span style={{ margin: 4, alignSelf: "center",fontFamily:'Vazir'  }}>تراکنش ها</span>
         </ListSubheader>
       }
     >
@@ -44,7 +44,7 @@ export default function History() {
           return (
             <div key={i}>
               <div className="flexbox">
-                <p>{date.value} $</p>
+                <p style={{fontFamily:'Vazir' }}>{date.value} هزار تومان</p>
                 <p>
                   {moment(date.createdAt).locale("fa").format("YYYY/MM/DD")}
                 </p>
@@ -57,11 +57,10 @@ export default function History() {
       </div>
 
       {result >= 0 ? (
-        <p style={{ marginLeft: 52, padding: 10 }}>Total: {result}</p>
+        <p style={{ marginLeft: 52, padding: 10,fontFamily:'Vazir'  }}> موجودی  : {result}</p>
       ) : (
-        <p style={{ marginLeft: 52, padding: 10, color: "red" }}>
-          Inventory is not enough
-        </p>
+        <p style={{ marginLeft: 52, padding: 10, color: "red",fontFamily:'Vazir' }}>
+موجودی کافی نیست        </p>
       )}
     </List>
   );
